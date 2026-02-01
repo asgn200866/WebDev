@@ -1,0 +1,248 @@
+body {
+  background-color: #a0a392;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  margin: 0px;
+}
+
+:root {
+  --h2--h3--color: rgb(128, 53, 53);
+  --h1--color: rgb(63, 63, 63);
+  --black: rgb(0, 0, 0);
+  --bg--h1--color: rgb(0, 255, 255);
+  --bg--h2--color: rgb(245, 245, 220);
+  --bg--h3--color: rgb(156, 156, 156);
+  --bg--btn--color: rgb(251, 234, 212);
+  --bg--btn--hover: rgb(163, 163, 163);
+  --bg--menu: rgb(240, 248, 255);
+  --bg--th: rgb(200, 200, 200);
+  --box--shadow: rgba(0, 0, 0, 0.3);
+  --box--shadow--img: rgb(46, 46, 46);
+  --table--border: rgb(108, 40, 40);
+}
+
+h1 {
+  color: var(--h1--color);
+  background-color: var(--bg--h1--color);
+  text-align: center;
+  font-weight: 750;
+}
+
+h2 {
+  color: var(--h2--h3--color);
+  text-align: center;
+  background-color: var(--bg--h2--color);
+}
+
+h3 {
+  color: var(--h2--h3--color);
+  background-color: var(--bg--h3--color);
+  margin: 0px;
+}
+
+.head {
+  margin-top: 6vh;
+}
+
+.head-btn {
+  align-items: center;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button-head {
+  background-color: var(--bg--btn--color);
+  border: none;
+  width: 15vw;
+  padding: 1vh;
+  border-radius: 12px;
+  cursor: pointer;
+  flex: 1;
+  margin: 2vh;
+  transition: box-shadow 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    margin: 1vw;
+  }
+}
+
+.button-head:hover {
+  background-color: var(--bg--btn--hover);
+  box-shadow: 0 4px 15px var(--box--shadow);
+}
+
+.menu {
+  width: 100%;
+  height: 5vh;
+  position: fixed;
+  top: 0px;
+  text-align: center;
+  background-color: var(--bg--menu);
+  font-size: 2rem;
+  border-radius: 0 0 1vh 1vh;
+  margin-bottom: 2vh;
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
+}
+
+.table-films {
+  background-color: var(--bg--h3--color);
+  width: 300px;
+  height: 100px;
+  padding: 2px;
+  border: 5px solid var(--table--border);
+  margin: 15px;
+  border-collapse: collapse;
+  @media (max-width: 768px) {
+    width: 100vw;
+    margin: 0px;
+    margin-top: 2vh;
+    height: 150px;
+  }
+}
+
+.table-films-caption {
+  padding: 0px;
+  margin-bottom: 0;
+  border: 5px solid var(--table--border);
+  border-bottom: 0px;
+}
+
+td {
+  padding: 10px;
+  border: 2px solid var(--black);
+}
+
+tr {
+  margin: 0px;
+}
+
+th {
+  background-color: var(--bg--th);
+  border: 2px solid var(--black);
+}
+
+li {
+  padding: 5px;
+  font-size: 1.2rem;
+  line-height: 0.8rem;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+.label-input {
+  margin: 20px;
+  border: 3px solid var(--black);
+}
+
+.agree-chb {
+  @media (max-width: 768px) {
+    margin: 2vw;
+  }
+}
+
+textarea {
+  margin: 20px;
+  margin-top: 0px;
+  border: 3px solid var(--black);
+}
+
+.video-player {
+  width: 720px;
+  height: auto;
+  margin: 20px;
+  @media (max-width: 768px) {
+    width: 100vw;
+    margin: 0px;
+    margin-top: 2vh;
+  }
+}
+
+.audio-player {
+  margin: 20px;
+}
+
+.gallery-img {
+  display: grid;
+  padding-left: 8vw;
+  padding-bottom: 10vh;
+  padding-top: 5vh;
+  gap: 3vw;
+  grid-template-columns: 25vw 25vw 25vw;
+}
+
+.grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.grid-img:hover {
+  transform: scale(1.2);
+  transition: 0.3s;
+  box-shadow: 0 0 100vh var(--box--shadow--img);
+}
+
+.grid-img:active {
+  @media (max-width: 768px) {
+    transform: scale(1.2);
+    transition: 0.3s;
+    box-shadow: 0 0 100vh var(--box--shadow--img);
+  }
+}
+
+.redox-img {
+  float: left;
+  width: 40vw;
+  padding: 30px;
+  @media (max-width: 768px) {
+    height: 25vh;
+    min-width: 240px;
+  }
+}
+
+.ftext-redox {
+  padding-left: 40vw;
+  margin-top: 5vh;
+  font-size: 1.3rem;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-top: 8vh;
+  }
+}
+
+.product-img {
+  display: grid;
+  grid-template-columns: 25vw 25vw;
+  gap: 2vw;
+  @media (max-width: 768px) {
+    grid-template-columns: 49vw 49vw;
+    margin-top: 10vh;
+  }
+}
+
+.img-redox {
+  width: 100%;
+  height: 20vh;
+  @media (min-width: 1200px) {
+    height: 40vh;
+  }
+  @media (max-width: 768px) {
+    height: 30vh;
+  }
+}
+
+.product-description {
+  padding-top: 1vh;
+  margin: 5vw;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+}
