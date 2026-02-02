@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Моё Портфолио - Обо мне</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html" class="logo">Портфо<span>лио</span></a>
+
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link active">Обо мне</a>
+            </li>
+            <li class="nav-item">
+              <a href="contacts.html" class="nav-link">Контакты</a>
+            </li>
+          </ul>
+
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="about-hero">
+          <h1 class="page-title">Обо мне</h1>
+          <p class="page-subtitle">Познакомимся поближе</p>
+        </section>
+
+        <section class="about-content">
+          <div class="about-photo">
+            <div class="photo-container">
+              <div class="photo-frame">
+                <div class="photo-placeholder">
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+              <div class="photo-caption">
+                <h3>Батурин Андрей</h3>
+                <p>Веб-разработчик</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-info">
+            <h2 class="section-title">Привет! Рад знакомству</h2>
+            <p>
+              Меня зовут Андрей, и я только начинаю свой путь в веб-разработке.
+              Но моих амбиций достаточно, что бы добиться высот.
+            </p>
+
+            <p>
+              Я построил план изучения веб-разработки и придерживаюсь его.
+              Признаюсь, это портфолио является плагиатом, но когда мой опыт
+              станет достаточным, я создам свое собственное.
+            </p>
+
+            <div class="about-stats">
+              <div class="stat-item">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Завершенных проектов</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">1<</div>
+                <div class="stat-label">Лет опыта</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Довольных клиентов</div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html" class="logo">Портфо<span>лио</span></a>
+            <p class="footer-text">
+              Создаю цифровые продукты, которые решают бизнес-задачи
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-title">Навигация</h3>
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="about.html">Обо мне</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h3 class="footer-title">Социальные сети</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 Батурин Андрей. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .querySelector(".hamburger")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.toggle("active");
+          this.classList.toggle("active");
+        });
+    </script>
+  </body>
+</html>

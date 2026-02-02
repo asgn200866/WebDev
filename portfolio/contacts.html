@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Моё Портфолио - Контакты</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html" class="logo">Портфо<span>лио</span></a>
+
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Главная</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">Обо мне</a>
+            </li>
+            <li class="nav-item">
+              <a href="contacts.html" class="nav-link active">Контакты</a>
+            </li>
+          </ul>
+
+          <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="contacts-hero">
+          <h1 class="page-title">Контакты</h1>
+          <p class="page-subtitle">
+            Свяжитесь со мной для обсуждения вашего проекта
+          </p>
+        </section>
+
+        <div class="contacts-container">
+          <section class="contact-info">
+            <h2 class="section-title">Контактная информация</h2>
+
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-content">
+                  <h3 class="contact-title">Адрес</h3>
+                  <p class="contact-text">
+                    г. Волгодонск, пер. Первомайский, д.72
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-content">
+                  <h3 class="contact-title">Телефон</h3>
+                  <p class="contact-text">+7 (905) 127-76-09</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-content">
+                  <h3 class="contact-title">Email</h3>
+                  <p class="contact-text">workmail200866@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-content">
+                  <h3 class="contact-title">Время для связи</h3>
+                  <p class="contact-text">Пн-Пт: 9:00 - 18:00</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-map">
+              <div class="map-placeholder">
+                <i class="fas fa-map"></i>
+                <p>Карта будет здесь</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="contact-form-section">
+            <h2 class="section-title">Форма обратной связи</h2>
+            <p class="form-description">
+              Заполните форму ниже, и я свяжусь с вами в ближайшее время (нет)
+            </p>
+
+            <form class="contact-form" action="#" method="post">
+              <div class="form-group">
+                <label for="name">Ваше имя *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Введите ваше имя"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Ваш email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Введите ваш email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Тема сообщения *</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  placeholder="Тема вашего сообщения"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Сообщение *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  placeholder="Опишите ваш проект или вопрос"
+                  rows="5"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                Отправить сообщение
+              </button>
+            </form>
+          </section>
+        </div>
+
+        <section class="faq-section">
+          <h2 class="section-title">Часто задаваемые вопросы</h2>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>Какой у вас график работы?</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Я работаю с понедельника по пятницу с 9:00 до 18:00. Для
+                  срочных проектов возможна работа в выходные дни по
+                  предварительной договоренности.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>Сколько времени занимает разработка проекта?</h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Время разработки зависит от сложности проекта. Простой лендинг
+                  может быть готов за 1-2 недели, сложное веб-приложение - от 1
+                  до 3 месяцев. После обсуждения проекта я предоставлю точные
+                  сроки.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>
+                  Предоставляете ли вы техподдержку после завершения проекта?
+                </h3>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Да, я предоставляю бесплатную техподдержку в течение 1 месяца
+                  после сдачи проекта. Далее возможна платная поддержка по
+                  договоренности.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="index.html" class="logo">Портфо<span>лио</span></a>
+            <p class="footer-text">
+              Создаю цифровые продукты, которые решают бизнес-задачи
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h3 class="footer-title">Навигация</h3>
+            <ul>
+              <li><a href="index.html">Главная</a></li>
+              <li><a href="about.html">Обо мне</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-social">
+            <h3 class="footer-title">Социальные сети</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+              <a href="#" class="social-icon"
+                ><i class="fab fa-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2023 Батурин Андрей. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .querySelector(".hamburger")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-menu").classList.toggle("active");
+          this.classList.toggle("active");
+        });
+
+      document.querySelectorAll(".faq-question").forEach((item) => {
+        item.addEventListener("click", () => {
+          const parent = item.parentElement;
+          parent.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
