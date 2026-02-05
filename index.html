@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Условия и циклы в программировании</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><i class="fas fa-code"></i> Условия и циклы в программировании</h1>
+        <p>
+          Изучите основы условий (if/else) и циклов с помощью интерактивных
+          примеров и практических заданий
+        </p>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="nav-tabs">
+        <div class="nav-tab active" data-tab="conditions">Условия if/else</div>
+        <div class="nav-tab" data-tab="calculator">Калькулятор</div>
+        <div class="nav-tab" data-tab="cycles">Циклы</div>
+        <div class="nav-tab" data-tab="guess-game">Угадай число</div>
+        <div class="nav-tab" data-tab="numbers">Числовые задания</div>
+      </div>
+
+      <div class="content-wrapper">
+        <div class="sidebar">
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-lightbulb"></i> Краткая теория
+            </h2>
+            <div id="theory-content">
+              <!-- Теория будет загружена через JS -->
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title">
+              <i class="fas fa-question-circle"></i> Подсказки
+            </h2>
+            <div class="hint" id="current-hint">
+              Выберите раздел для отображения подсказок и теории.
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <!-- Вкладка Условия if/else -->
+          <div id="conditions" class="tab-content active">
+            <div class="card">
+              <h2 class="card-title">
+                <i class="fas fa-code-branch"></i> Условные конструкции
+              </h2>
+              <p>
+                Условные операторы позволяют выполнять различные действия в
+                зависимости от условий.
+              </p>
+
+              <div class="practice-section">
+                <h3>Пример if/else</h3>
+                <div class="code-block">
+                  // Проверка возраста let age = 18; if (age < 18) {
+                  console.log("Вы несовершеннолетний"); } else if (age >= 18 &&
+                  age < 65) { console.log("Вы взрослый"); } else {
+                  console.log("Вы пенсионер"); }
+                </div>
+
+                <h3>Проверка числа</h3>
+                <p>Введите число, и мы определим его характеристику:</p>
+                <input
+                  type="number"
+                  id="number-input"
+                  placeholder="Введите число"
+                />
+                <button id="check-number">Проверить</button>
+                <div class="result" id="number-result"></div>
+              </div>
+
+              <div class="practice-section">
+                <h3>Тернарный оператор</h3>
+                <div class="code-block">
+                  // Синтаксис: условие ? значение_если_истина :
+                  значение_если_ложь let isMember = true; let discount =
+                  isMember ? 10 : 0; console.log(`Ваша скидка: ${discount}%`);
+                </div>
+
+                <h3>Switch/case</h3>
+                <div class="code-block">
+                  // Определение дня недели let day = 2; let dayName;
+                  switch(day) { case 1: dayName = "Понедельник"; break; case 2:
+                  dayName = "Вторник"; break; case 3: dayName = "Среда"; break;
+                  default: dayName = "Другой день"; } console.log(dayName); //
+                  Выведет "Вторник"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вкладка Калькулятор -->
+          <div id="calculator" class="tab-content">
+            <div class="card">
+              <h2 class="card-title">
+                <i class="fas fa-calculator"></i> Калькулятор с выбором операции
+              </h2>
+              <p>
+                Реализация калькулятора с использованием switch/case для выбора
+                операции.
+              </p>
+
+              <div class="practice-section">
+                <h3>Введите данные для расчета</h3>
+                <div class="input-group">
+                  <input type="number" id="num1" placeholder="Первое число" />
+                  <select id="operation">
+                    <option value="+">Сложение (+)</option>
+                    <option value="-">Вычитание (-)</option>
+                    <option value="*">Умножение (*)</option>
+                    <option value="/">Деление (/)</option>
+                  </select>
+                  <input type="number" id="num2" placeholder="Второе число" />
+                </div>
+                <button id="calculate">Вычислить</button>
+
+                <div class="result" id="calc-result"></div>
+
+                <h3>Код калькулятора</h3>
+                <div class="code-block">
+                  function calculate(a, b, operation) { let result;
+                  switch(operation) { case '+': result = a + b; break; case '-':
+                  result = a - b; break; case '*': result = a * b; break; case
+                  '/': result = b !== 0 ? a / b : "Ошибка: деление на ноль";
+                  break; default: result = "Неизвестная операция"; } return
+                  result; }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вкладка Циклы -->
+          <div id="cycles" class="tab-content">
+            <div class="card">
+              <h2 class="card-title">
+                <i class="fas fa-redo"></i> Циклы в программировании
+              </h2>
+              <p>Циклы позволяют выполнять один и тот же код несколько раз.</p>
+
+              <div class="practice-section">
+                <h3>Цикл for (счетчик)</h3>
+                <div class="code-block">
+                  // Синтаксис: for(инициализация; условие; инкремент) { ... }
+                  for(let i = 1; i <= 5; i++) { console.log("Итерация номер: " +
+                  i); }
+                </div>
+
+                <h3>Цикл while (условие)</h3>
+                <div class="code-block">
+                  // Синтаксис: while(условие) { ... } let count = 1;
+                  while(count <= 5) { console.log("Счет: " + count); count++; }
+                </div>
+
+                <h3>Цикл do...while (постусловие)</h3>
+                <div class="code-block">
+                  // Синтаксис: do { ... } while(условие) let num = 1; do {
+                  console.log("Число: " + num); num++; } while(num <= 5);
+                </div>
+              </div>
+
+              <div class="practice-section">
+                <h3>Управление циклами: break и continue</h3>
+                <div class="code-block">
+                  // break - выход из цикла for(let i = 1; i <= 10; i++) { if(i
+                  === 5) { break; // выходим из цикла при i = 5 }
+                  console.log(i); // выведет 1, 2, 3, 4 } // continue - пропуск
+                  итерации for(let i = 1; i <= 5; i++) { if(i === 3) { continue;
+                  // пропускаем итерацию при i = 3 } console.log(i); // выведет
+                  1, 2, 4, 5 }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вкладка Угадай число -->
+          <div id="guess-game" class="tab-content">
+            <div class="card">
+              <h2 class="card-title">
+                <i class="fas fa-dice"></i> Игра "Угадай число" (1-10)
+              </h2>
+              <p>
+                Попробуйте угадать случайное число от 1 до 10. У вас будет 3
+                попытки.
+              </p>
+
+              <div class="practice-section">
+                <h3>Начните игру</h3>
+                <p>Введите число от 1 до 10:</p>
+                <input
+                  type="number"
+                  id="guess-input"
+                  min="1"
+                  max="10"
+                  placeholder="1-10"
+                />
+                <button id="guess-btn">Проверить</button>
+                <button id="start-game">Начать новую игру</button>
+
+                <div class="result" id="game-result">
+                  Нажмите "Начать новую игру" для старта
+                </div>
+
+                <div class="game-info">
+                  <p>Осталось попыток: <span id="attempts-left">3</span></p>
+                  <p>Случайное число: <span id="secret-number">?</span></p>
+                  <p>Ваши попытки: <span id="attempts-history">-</span></p>
+                </div>
+
+                <h3>Код игры</h3>
+                <div class="code-block">
+                  let secretNumber = Math.floor(Math.random() * 10) + 1; let
+                  attempts = 3; while(attempts > 0) { let userGuess =
+                  parseInt(prompt("Угадайте число (1-10):")); if(userGuess ===
+                  secretNumber) { console.log("Поздравляем! Вы угадали!");
+                  break; } else if(userGuess < secretNumber) {
+                  console.log("Слишком маленькое число"); } else {
+                  console.log("Слишком большое число"); } attempts--;
+                  if(attempts === 0) { console.log("Игра окончена. Число было: "
+                  + secretNumber); } }
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Вкладка Числовые задания -->
+          <div id="numbers" class="tab-content">
+            <div class="card">
+              <h2 class="card-title">
+                <i class="fas fa-sort-numeric-up"></i> Числовые задания
+              </h2>
+              <p>Практические задания с циклами для работы с числами.</p>
+
+              <div class="practice-section">
+                <h3>Вывод чисел от 1 до 100</h3>
+                <button id="print-numbers">Вывести числа 1-100</button>
+                <div class="result" id="numbers-output"></div>
+
+                <h3>Вывод только чётных чисел</h3>
+                <button id="print-even">Вывести чётные числа 1-100</button>
+                <div class="result" id="even-output"></div>
+
+                <h3>Код для вывода чисел</h3>
+                <div class="code-block">
+                  // Вывод чисел от 1 до 100 for(let i = 1; i <= 100; i++) {
+                  console.log(i); } // Вывод только чётных чисел for(let i = 1;
+                  i <= 100; i++) { if(i % 2 === 0) { console.log(i); } } //
+                  Альтернативный способ (только чётные) for(let i = 2; i <= 100;
+                  i += 2) { console.log(i); }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>Образовательный сайт по программированию &copy; 2023</p>
+        <p>Тема: Условия (if/else) и циклы в программировании</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
