@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 300px;
+}
+
+.main-content {
+  flex: 2;
+  min-width: 600px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #4a6491;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-title i {
+  color: #4a6491;
+}
+
+.code-block {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  margin: 15px 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.practice-section {
+  background-color: #f8f9fa;
+  border-left: 4px solid #4a6491;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.practice-section h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #4a6491;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin: 10px 5px 10px 0;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin: 5px;
+  font-size: 1rem;
+}
+
+.result {
+  background-color: #e8f4fc;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+  min-height: 60px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+.highlight {
+  background-color: #fffacd;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-tab {
+  padding: 12px 20px;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 500;
+}
+
+.nav-tab.active {
+  background-color: #4a6491;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.hint {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 12px;
+  margin: 15px 0;
+  font-size: 0.9rem;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  color: #666;
+  font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .main-content,
+  .sidebar {
+    min-width: 100%;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+.visual-example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.flow-box {
+  background-color: #4a6491;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px;
+  min-width: 120px;
+}
+
+.arrow {
+  font-size: 1.5rem;
+  color: #4a6491;
+}
+
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.game-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.game-info p {
+  margin: 8px 0;
+}
+
+#secret-number {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#attempts-history {
+  font-family: "Courier New", monospace;
+}
