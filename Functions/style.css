@@ -1,0 +1,18 @@
+body {
+  margin: 0px;
+  background-color: var(--bg--body);
+}
+
+:root {
+  --bg--fon: rgb(23, 118, 190);
+  --bg--body: rgb(25, 0, 0);
+}
+
+.current {
+  background-color: var(--bg--fon);
+  width: 90vw;
+  height: 90vh;
+  position: relative;
+  top: 5vh;
+  left: 5vw;
+}
