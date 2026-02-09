@@ -6,6 +6,8 @@ body {
 :root {
   --bg--fon: rgb(23, 118, 190);
   --bg--body: rgb(25, 0, 0);
+  --bg--var--btn--fon: rgb(85, 2, 2);
+  --bg-btn: rgb(116, 116, 116);
 }
 
 .current {
@@ -15,4 +17,17 @@ body {
   position: relative;
   top: 5vh;
   left: 5vw;
+}
+
+.btn-bg-color {
+  background-color: var(--bg-btn);
+  position: relative;
+  top: 20px;
+  left: 20px;
+  border: solid 5px var(--bg--var--btn--fon);
+  width: 20vw;
+  height: 4vh;
+  border-radius: 25px;
+  outline: none !important;
+  box-shadow: none;
 }
