@@ -29,3 +29,9 @@
  *     'input' - позволяет выполнять функцию при каждом изменении окна ввода. 
  * —————————————————————————————————————————————————————————————————————————————————————————————————
  */
+
+const bgButton = document.getElementById(`bg-color`);
+console.log(bgButton);
+
+const colorFon = element.classList(`.current`);
+console.log(colorFon);
