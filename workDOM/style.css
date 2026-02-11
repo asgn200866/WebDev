@@ -7,25 +7,71 @@ body {
   --bg--fon: rgb(23, 118, 190);
   --bg--body: rgb(25, 0, 0);
   --bg--var--btn--fon: rgb(85, 2, 2);
-  --bg-btn: rgb(116, 116, 116);
+  --bg-btn--blue: rgb(34, 100, 150);
+  --bg-btn--red: rgb(125, 38, 38);
+  --input--bg: rgb(16, 80, 130);
+  --btn--color--input--bg: rgb(58, 2, 2);
+  --text--color--blue: rgb(50, 166, 255);
+  --text--color--red: rgb(255, 0, 0);
 }
 
 .current {
   background-color: var(--bg--fon);
   width: 90vw;
   height: 90vh;
-  position: relative;
+  position: absolute;
   top: 5vh;
   left: 5vw;
 }
 
 .btn-bg-color {
-  background-color: var(--bg-btn);
+  background-color: var(--bg-btn--blue);
   position: relative;
-  top: 20px;
-  left: 20px;
-  border: solid 5px var(--bg--var--btn--fon);
+  top: 88vh;
+  left: -2vw;
+  border: solid 5px var(--input--bg);
   width: 20vw;
+  height: 4vh;
+  border-radius: 25px;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.inputUser {
+  background-color: var(--input--bg);
+  position: relative;
+  width: 70vw;
+  height: 30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid 2px var(--input--bg);
+  resize: none;
+  padding: 0;
+  color: var(--text--color--blue);
+  outline: none;
+}
+
+.outputUser {
+  background-color: var(--input--bg);
+  position: relative;
+  width: 70vw;
+  height: 30vh;
+  top: 0vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid 2px var(--input--bg);
+  color: var(--text--color--blue);
+  white-space: pre-wrap;
+}
+
+.submitInput {
+  background-color: var(--bg-btn--blue);
+  position: relative;
+  top: 35vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border: solid 5px var(--input--bg);
+  width: 50vw;
   height: 4vh;
   border-radius: 25px;
   outline: none !important;

@@ -7,8 +7,21 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="current"></div>
-    <button class="btn-bg-color" id="bg-color">Измени цвет фона!</button>
+    <div class="current">
+      <button class="btn-bg-color" id="bg-color">
+        Change the background color!
+      </button>
+      <form action="" class="formSubmit">
+        <textarea
+          class="inputUser"
+          type="text"
+          name="text"
+          placeholder="Enter text"
+        ></textarea>
+        <button class="submitInput">Send message</button>
+      </form>
+      <div class="outputUser"></div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
