@@ -29,7 +29,6 @@
  *     'input' - позволяет выполнять функцию при каждом изменении окна ввода. 
  * —————————————————————————————————————————————————————————————————————————————————————————————————
  */
-
 const bgButton = document.getElementById(`bg-color`);
 const bgFonColor = document.querySelector(`.current`);
 const inputArea = document.querySelector(`.inputUser`);
@@ -79,5 +78,6 @@ function textTracker(event) {
 submitForm.addEventListener("submit", formAccepted);
 
 function formAccepted(event) {
+  event.preventDefault();
   alert("Whish accepted!");
 }
