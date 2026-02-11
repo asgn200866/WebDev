@@ -31,7 +31,53 @@
  */
 
 const bgButton = document.getElementById(`bg-color`);
-console.log(bgButton);
+const bgFonColor = document.querySelector(`.current`);
+const inputArea = document.querySelector(`.inputUser`);
+const outputArea = document.querySelector(`.outputUser`);
+const submitBtn = document.querySelector(`.submitInput`);
+const submitForm = document.querySelector(`.formSubmit`);
 
-const colorFon = element.classList(`.current`);
-console.log(colorFon);
+let fladBtnPush = true;
+
+bgButton.addEventListener("click", changeColor);
+
+function changeColor(event) {
+  if (fladBtnPush) {
+    bgFonColor.style.backgroundColor = "var(--bg--var--btn--fon)";
+    bgButton.style.border = "solid 5px var(--btn--color--input--bg)";
+    bgButton.style.backgroundColor = "var(--bg-btn--red)";
+    submitBtn.style.backgroundColor = "var(--bg-btn--red)";
+    inputArea.style.backgroundColor = "var(--btn--color--input--bg)";
+    outputArea.style.backgroundColor = "var(--btn--color--input--bg)";
+    inputArea.style.border = "solid 2px var(--btn--color--input--bg)";
+    outputArea.style.border = "solid 2px var(--btn--color--input--bg)";
+    submitBtn.style.border = "solid 5px var(--btn--color--input--bg)";
+    outputArea.style.color = "var(--text--color--red)";
+    inputArea.style.color = "var(--text--color--red)";
+  } else {
+    bgFonColor.style.backgroundColor = "var(--bg--fon)";
+    bgButton.style.border = "solid 5px var(--input--bg)";
+    bgButton.style.backgroundColor = "var(--bg-btn--blue)";
+    submitBtn.style.backgroundColor = "var(--bg-btn--blue)";
+    inputArea.style.backgroundColor = "var(--input--bg)";
+    outputArea.style.backgroundColor = "var(--input--bg)";
+    inputArea.style.border = "solid 2px var(--input--bg)";
+    outputArea.style.border = "solid 2px var(--input--bg)";
+    submitBtn.style.border = "solid 5px var(--input--bg)";
+    outputArea.style.color = "var(--text--color--blue)";
+    inputArea.style.color = "var(--text--color--blue)";
+  }
+  fladBtnPush = !fladBtnPush;
+}
+
+inputArea.addEventListener("input", textTracker);
+
+function textTracker(event) {
+  outputArea.textContent = inputArea.value;
+}
+
+submitForm.addEventListener("submit", formAccepted);
+
+function formAccepted(event) {
+  alert("Whish accepted!");
+}
