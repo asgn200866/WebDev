@@ -41,6 +41,20 @@ body {
   justify-content: space-around;
 }
 
+.column-tasks {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.column-nodeadline {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
 .days-calendar {
   display: flex;
   flex-direction: row;
@@ -60,4 +74,9 @@ body {
   flex-direction: column;
   flex: 1;
   justify-content: space-around;
+}
+
+.label-text-tasks {
+  display: flex;
+  flex-direction: row;
 }
