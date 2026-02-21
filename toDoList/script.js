@@ -11,7 +11,7 @@ function createTasksEl() {
   elColumnTasks.insertAdjacentElement("beforeend", fragmentTasksMain);
 } // Функция создания первой строки
 
-function getTextValue() {
+function getTextValueTasks() {
   var lastFragmentInput = labelTextTasksInput[labelTextTasksInput.length - 1]; // Получение последнего элемента ввода
   var textTasksValue = lastFragmentInput.value; // Получение текста из последнего обьекта
   var lastFragmentCb = tasksChekbox[tasksChekbox.length - 1]; // Получение последнего элемента ввода
@@ -20,13 +20,13 @@ function getTextValue() {
   if (textTasksValue != "") {
     const taskObject = new TaskArr(textTasksValue, checkTasksValue);
     taskArrOb.push(TaskArr);
-    console.log(taskArrOb);
+    consoleMessage();
 
     createTasksEl();
   }
 } // Функция создания нового объекта/элемента
 
-function delEmptyEL() {
+function delEmptyELTasks() {
   const arrElTasksDel = Array.from(labelTextTasksInput).slice(0, -1);
   for (let i = arrElTasksDel.length - 1; i >= 0; i--) {
     let element1 = arrElTasksDel[i];
@@ -34,7 +34,8 @@ function delEmptyEL() {
 
     if (element1.value === "") {
       element1.remove();
-      taskArrOb.splice(i);
+      taskArrOb.splice(i, 1);
+      consoleMessage();
       if (element2) element2.remove();
     }
   }
@@ -52,7 +53,7 @@ function checkTasks() {
       element2.style.textDecoration = "none";
     }
   }
-}
+} // Проверка и сявзь чекбокса с инпутом
 
 function TaskArr(text, cbComplected) {
   this.text = text;
@@ -62,16 +63,11 @@ function TaskArr(text, cbComplected) {
 createTasksEl(); // Создание нового обьекта tasks (вызов функции)
 
 elColumnTasks.addEventListener("input", () => {
-  getTextValue();
-  delEmptyEL();
+  getTextValueTasks();
+  delEmptyELTasks();
 }); // Прослушивание ввода для теста
 
 elColumnTasks.addEventListener("change", checkTasks);
-
-function saveTextTasks() {
-  getTextValue();
-  delEmptyEL();
-} // Функция обработчика событий tasks
 
 /* Надо создать первый обьект, что бы потом сканить его как последний. Есть варик пере
 смотреть структуру иф елсе, что бы разделить создание обьекта и добавление ДОМ элемента
@@ -85,3 +81,93 @@ function saveTextTasks() {
 функцию создания нулевого обьекта, который будет помещен в тот же массив. Требуется
 реализовать логику проверку всего массива на обнуление строки и последующие удаление.
 В лучшем случае по активности инпута выбирать объект и с ним проводить функции */
+
+const labelNodeadlineInput =
+  document.getElementsByClassName("nodeadline-input");
+const nodeadlineChekbox = document.getElementsByClassName("nodeadline-cb");
+const elColumnNodeadline = document.getElementById("nodeadlineText");
+
+let nodeadlineArrOb = [];
+
+function createNodeadlineEl() {
+  let fragmentNodeadlineMain = document.createElement("div");
+  fragmentNodeadlineMain.className = "label-text-nodeadline";
+  fragmentNodeadlineMain.innerHTML = `<input type="checkbox" class="nodeadline-cb"><input type="text" class="nodeadline-input">`;
+  elColumnNodeadline.insertAdjacentElement("beforeend", fragmentNodeadlineMain);
+} // Функция создания первой строки
+
+function getTextValueNodeadline() {
+  var lastFragmentInput = labelNodeadlineInput[labelNodeadlineInput.length - 1]; // Получение последнего элемента ввода
+  var textNodeadlineValue = lastFragmentInput.value; // Получение текста из последнего обьекта
+  var lastFragmentCb = nodeadlineChekbox[nodeadlineChekbox.length - 1]; // Получение последнего элемента ввода
+  var checkNodeadlineValue = lastFragmentCb.checked; // Получение текста из последнего обьекта
+
+  if (textNodeadlineValue != "") {
+    const nodeadlineObject = new NodeadlineArr(
+      textNodeadlineValue,
+      checkNodeadlineValue,
+    );
+    nodeadlineArrOb.push(NodeadlineArr);
+    consoleMessage();
+
+    createNodeadlineEl();
+  }
+} // Функция создания нового объекта/элемента
+
+function delEmptyELNodeadline() {
+  const arrElNodeadlineDel = Array.from(labelNodeadlineInput).slice(0, -1);
+  for (let i = arrElNodeadlineDel.length - 1; i >= 0; i--) {
+    let element1 = arrElNodeadlineDel[i];
+    let element2 = nodeadlineChekbox[i];
+
+    if (element1.value === "") {
+      element1.remove();
+      nodeadlineArrOb.splice(i, 1);
+      consoleMessage();
+      if (element2) element2.remove();
+    }
+  }
+} // Удаление обьекта при обнулении инпута
+
+function checkNodeadline() {
+  const checkNodeadlineArr = Array.from(nodeadlineChekbox);
+  for (let i = 0; i < checkNodeadlineArr.length; i++) {
+    let element1 = checkNodeadlineArr[i];
+    let element2 = labelNodeadlineInput[i];
+
+    if (element1.checked) {
+      element2.style.textDecoration = "line-through";
+    } else {
+      element2.style.textDecoration = "none";
+    }
+  }
+} // Проверка и сявзь чекбокса с инпутом
+
+function NodeadlineArr(text, cbComplected) {
+  this.text = text;
+  this.cbComplected = cbComplected;
+} // Обьект tasks
+
+createNodeadlineEl(); // Создание нового обьекта nodeadline (вызов функции)
+
+elColumnNodeadline.addEventListener("input", () => {
+  getTextValueNodeadline();
+  delEmptyELNodeadline();
+}); // Прослушивание ввода для теста
+
+elColumnNodeadline.addEventListener("change", checkNodeadline); // Прослушивание чекбокса
+
+function consoleMessage() {
+  console.clear();
+  console.log(taskArrOb);
+  console.log(nodeadlineArrOb);
+
+  console.log(
+    "Только текст задач:",
+    taskArrOb.map((obj) => obj.text),
+  );
+  console.log(
+    "Только текст дедлайнов:",
+    nodeadlineArrOb.map((obj) => obj.text),
+  );
+}

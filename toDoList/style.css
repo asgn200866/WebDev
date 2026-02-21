@@ -36,12 +36,14 @@ body {
   justify-content: space-around;
 }
 
-.label-text-tasks {
+.label-text-tasks,
+.label-text-nodeadline {
   display: flex;
   flex-direction: row;
 }
 
-.tasks-input {
+.tasks-input,
+.nodeadline-input {
   text-decoration: none;
   color: var(--color--text--black);
 }
