@@ -15,11 +15,13 @@ function getTextValueTasks() {
   var lastFragmentInput = labelTextTasksInput[labelTextTasksInput.length - 1]; // Получение последнего элемента ввода
   var textTasksValue = lastFragmentInput.value; // Получение текста из последнего обьекта
   var lastFragmentCb = tasksChekbox[tasksChekbox.length - 1]; // Получение последнего элемента ввода
-  var checkTasksValue = lastFragmentCb.checked; // Получение текста из последнего обьекта
+  var checkTasksValue = lastFragmentCb.checked; // Проверка чб из последнего обьекта
+
+  console.log(textTasksValue);
 
   if (textTasksValue != "") {
     const taskObject = new TaskArr(textTasksValue, checkTasksValue);
-    taskArrOb.push(TaskArr);
+    taskArrOb.push(taskObject);
     consoleMessage();
 
     createTasksEl();
@@ -107,7 +109,7 @@ function getTextValueNodeadline() {
       textNodeadlineValue,
       checkNodeadlineValue,
     );
-    nodeadlineArrOb.push(NodeadlineArr);
+    nodeadlineArrOb.push(nodeadlineObject);
     consoleMessage();
 
     createNodeadlineEl();
@@ -163,11 +165,20 @@ function consoleMessage() {
   console.log(nodeadlineArrOb);
 
   console.log(
-    "Только текст задач:",
+    "Только текст и чекбокс задач:",
     taskArrOb.map((obj) => obj.text),
+    taskArrOb.map((obj) => obj.cbComplected),
   );
   console.log(
     "Только текст дедлайнов:",
     nodeadlineArrOb.map((obj) => obj.text),
   );
 }
+
+/**
+ * Надо разбить логику функции getTextValueTasks на две функции. Функцию создания обьекта при заполнении пустой строки
+ * и обновления переменной text в обьекте, инпут которого заполняется. Проверить логику вывода чек боксов и сохранить
+ * их в переменную как булевый параметр для дальнейшего сохранения в local storage.
+ * Настроить отдельный обработчик событий для обновления текста в обьекте при активации и обновлении его импута.
+ *  Тоже самое с чекбоксами, нужно обновление параметра в обьекте при обновлении чек бокса от юзера.
+ */
