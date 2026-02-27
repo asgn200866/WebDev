@@ -1,33 +1,92 @@
-const labelTextTasksInput = document.getElementsByClassName("tasks-input"); // HTMLcollection for tasks input
-const tasksChekbox = document.getElementsByClassName("tasks-cb"); // HTMLcollection for tasks chekbox
-const elColumnTasks = document.getElementById("tasksText"); // DOMelement tasks
+const labelTextTasksInput = document.getElementsByClassName('tasks-input'); // HTMLcollection for tasks input
+const tasksChekbox = document.getElementsByClassName('tasks-cb'); // HTMLcollection for tasks chekbox
+const elColumnTasks = document.getElementById('tasksText'); // DOMelement tasks
 
-const labelNodeadlineInput =
-  document.getElementsByClassName("nodeadline-input");
-const nodeadlineChekbox = document.getElementsByClassName("nodeadline-cb");
-const elColumnNodeadline = document.getElementById("nodeadlineText");
+const labelNodeadlineInput = document.getElementsByClassName('nodeadline-input');
+const nodeadlineChekbox = document.getElementsByClassName('nodeadline-cb');
+const elColumnNodeadline = document.getElementById('nodeadlineText');
+
+/**
+ * const collectonInput = document.getElementsByClassName(className) -- HTMLcollection for tasks input
+ * const collectonCheckbox = document.getElementsByClassName(className) -- HTMLcollection for tasks chekbox
+ * const elementInDocument = document.getElementById(valueID) -- Получение обьекта для позиционирования в документе
+ */
 
 /*Импорт необходимых компонентов из документа HTML*/
 
 let taskArrOb = [];
 let nodeadlineArrOb = [];
 
+/**
+ * let arrayObject = {
+ *    taskArrOb: [];
+ *    nodeadlineArrOb: [];
+ * }
+ * 
+ * function addArray(item) {
+ *    const typeKey = item.type;
+ *    arrayObject[typeObject].push(item);
+ * 
+ *    if (!arrayObject[typeKey]) {
+ *        console.error("Неизвестный тип: ", typeKey);
+ *        return;
+ *    }
+ * }
+}
+ */
 /*Создание массиво для хранения обьектов Tasks и Nodeadline*/
 
 function createTasksEl() {
-  let fragmentTasksMain = document.createElement("div");
-  fragmentTasksMain.className = "label-text-tasks";
+  let fragmentTasksMain = document.createElement('div');
+  fragmentTasksMain.className = 'label-text-tasks';
   fragmentTasksMain.innerHTML = `<input type="checkbox" class="tasks-cb"><input type="text" class="tasks-input">`;
-  elColumnTasks.insertAdjacentElement("beforeend", fragmentTasksMain);
+  elColumnTasks.insertAdjacentElement('beforeend', fragmentTasksMain);
 } // Функция создания первой строки
 function createNodeadlineEl() {
-  let fragmentNodeadlineMain = document.createElement("div");
-  fragmentNodeadlineMain.className = "label-text-nodeadline";
+  let fragmentNodeadlineMain = document.createElement('div');
+  fragmentNodeadlineMain.className = 'label-text-nodeadline';
   fragmentNodeadlineMain.innerHTML = `<input type="checkbox" class="nodeadline-cb"><input type="text" class="nodeadline-input">`;
-  elColumnNodeadline.insertAdjacentElement("beforeend", fragmentNodeadlineMain);
+  elColumnNodeadline.insertAdjacentElement('beforeend', fragmentNodeadlineMain);
 } // Функция создания первой строки
 
 /*Создание первой строки для запуска циклов и обработчиков событий*/
+
+/**
+ * function taskRow() {
+ *    return '
+ *    <div class="label-text-tasks">
+ *      <input type="checkbox" class="tasks-cb">
+ *       <input type="text" class="tasks-input">
+ *     </div>';}
+ *
+ * function nodeadlineRow() {
+ *    return '
+ *    <div class-"label-text-nodeadline">
+ *      <input type="checkbox" class="nodeadline-cb">
+ *      <input type="text" class="nodeadline-input">
+ *    </div>';}
+ * }
+ *
+ *
+ * const uiMap = {
+ *    tasks: taskRow;
+ *    nodeadline: nodeadlineRow;
+ * };
+ *
+ * function insertElement(type) {
+ * const elementFactory = uiMap[type];
+ *
+ * }
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
 function getTextValueTasks() {
   var lastFragmentInput = labelTextTasksInput[labelTextTasksInput.length - 1]; // Получение последнего элемента ввода
@@ -37,12 +96,12 @@ function getTextValueTasks() {
 
   console.log(textTasksValue);
 
-  if (textTasksValue != "") {
+  if (textTasksValue != '') {
     const taskObject = new TaskArr(textTasksValue, checkTasksValue);
     taskArrOb.push(taskObject);
     consoleMessage();
 
-    createTasksEl();
+    // createTasksEl();
   }
 } // Функция создания нового объекта/элемента
 function getTextValueNodeadline() {
@@ -51,17 +110,14 @@ function getTextValueNodeadline() {
   var lastFragmentCb = nodeadlineChekbox[nodeadlineChekbox.length - 1]; // Получение последнего элемента ввода
   var checkNodeadlineValue = lastFragmentCb.checked; // Получение текста из последнего обьекта
 
-  if (textNodeadlineValue != "") {
-    const nodeadlineObject = new NodeadlineArr(
-      textNodeadlineValue,
-      checkNodeadlineValue,
-    );
+  if (textNodeadlineValue != '') {
+    const nodeadlineObject = new NodeadlineArr(textNodeadlineValue, checkNodeadlineValue);
     nodeadlineArrOb.push(nodeadlineObject);
     consoleMessage();
 
     createNodeadlineEl();
   }
-} // Функция создания нового объекта/элемента
+}
 
 /*Функции создания новых объектов для активации в обработчике*/
 
@@ -71,30 +127,30 @@ function delEmptyELTasks() {
     let element1 = arrElTasksDel[i];
     let element2 = tasksChekbox[i];
 
-    if (element1.value === "") {
+    if (element1.value === '') {
       element1.remove();
       taskArrOb.splice(i, 1);
       consoleMessage();
       if (element2) element2.remove();
     }
   }
-} // Удаление обьекта при обнулении инпута
+}
 function delEmptyELNodeadline() {
   const arrElNodeadlineDel = Array.from(labelNodeadlineInput).slice(0, -1);
   for (let i = arrElNodeadlineDel.length - 1; i >= 0; i--) {
     let element1 = arrElNodeadlineDel[i];
     let element2 = nodeadlineChekbox[i];
 
-    if (element1.value === "") {
+    if (element1.value === '') {
       element1.remove();
       nodeadlineArrOb.splice(i, 1);
       consoleMessage();
       if (element2) element2.remove();
     }
   }
-} // Удаление обьекта при обнулении инпута
+}
 
-/*Обновление инпутов при их обновлении*/
+/*Обработка инпутов при их обновлении*/
 
 function checkTasks() {
   const checkTasksArr = Array.from(tasksChekbox);
@@ -103,12 +159,12 @@ function checkTasks() {
     let element2 = labelTextTasksInput[i];
 
     if (element1.checked) {
-      element2.style.textDecoration = "line-through";
+      element2.style.textDecoration = 'line-through';
     } else {
-      element2.style.textDecoration = "none";
+      element2.style.textDecoration = 'none';
     }
   }
-} // Проверка и сявзь чекбокса с инпутом
+}
 function checkNodeadline() {
   const checkNodeadlineArr = Array.from(nodeadlineChekbox);
   for (let i = 0; i < checkNodeadlineArr.length; i++) {
@@ -116,23 +172,23 @@ function checkNodeadline() {
     let element2 = labelNodeadlineInput[i];
 
     if (element1.checked) {
-      element2.style.textDecoration = "line-through";
+      element2.style.textDecoration = 'line-through';
     } else {
-      element2.style.textDecoration = "none";
+      element2.style.textDecoration = 'none';
     }
   }
-} // Проверка и сявзь чекбокса с инпутом
+}
 
 /*Связь чекбокса с инпутом для осуществления их взаимодействия*/
 
 function TaskArr(text, cbComplected) {
   this.text = text;
   this.cbComplected = cbComplected;
-} // Обьект tasks
+}
 function NodeadlineArr(text, cbComplected) {
   this.text = text;
   this.cbComplected = cbComplected;
-} // Обьект tasks
+}
 
 /*Обьявление обьектов */
 
@@ -141,17 +197,17 @@ createNodeadlineEl(); // Создание нового обьекта nodeadline
 
 /*Вызов функций создания первых объектов*/
 
-elColumnTasks.addEventListener("input", () => {
+elColumnTasks.addEventListener('input', () => {
   getTextValueTasks();
   delEmptyELTasks();
 }); // Прослушивание ввода для теста
-elColumnNodeadline.addEventListener("input", () => {
+elColumnNodeadline.addEventListener('input', () => {
   getTextValueNodeadline();
   delEmptyELNodeadline();
 }); // Прослушивание ввода для теста
 
-elColumnTasks.addEventListener("change", checkTasks);
-elColumnNodeadline.addEventListener("change", checkNodeadline); // Прослушивание чекбокса
+elColumnTasks.addEventListener('change', checkTasks);
+elColumnNodeadline.addEventListener('change', checkNodeadline); // Прослушивание чекбокса
 
 /*Создание обработичков события*/
 
@@ -174,13 +230,13 @@ function consoleMessage() {
   console.log(nodeadlineArrOb);
 
   console.log(
-    "Только текст и чекбокс задач:",
+    'Только текст и чекбокс задач:',
     taskArrOb.map((obj) => obj.text),
-    taskArrOb.map((obj) => obj.cbComplected),
+    taskArrOb.map((obj) => obj.cbComplected)
   );
   console.log(
-    "Только текст дедлайнов:",
-    nodeadlineArrOb.map((obj) => obj.text),
+    'Только текст дедлайнов:',
+    nodeadlineArrOb.map((obj) => obj.text)
   );
 } //Debug and logs
 
