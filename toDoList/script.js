@@ -52,31 +52,6 @@ function createNodeadlineEl() {
 /*Создание первой строки для запуска циклов и обработчиков событий*/
 
 /**
- * function taskRow() {
- *    return '
- *    <div class="label-text-tasks">
- *      <input type="checkbox" class="tasks-cb">
- *       <input type="text" class="tasks-input">
- *     </div>';}
- *
- * function nodeadlineRow() {
- *    return '
- *    <div class-"label-text-nodeadline">
- *      <input type="checkbox" class="nodeadline-cb">
- *      <input type="text" class="nodeadline-input">
- *    </div>';}
- * }
- *
- *
- * const uiMap = {
- *    tasks: taskRow;
- *    nodeadline: nodeadlineRow;
- * };
- *
- * function insertElement(type) {
- * const elementFactory = uiMap[type];
- *
- * }
  *
  *
  *
