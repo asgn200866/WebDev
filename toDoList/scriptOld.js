@@ -61,12 +61,6 @@ function creatEl(baseClassName, columnElement) {
     <input type="text" class= {baseClassName}>`;
     columnElement.insertAdjacentElement('beforeend', fragmentMain);
  }
- *
- *
- *
- *
- *
- *
  */
 
 function getTextValueTasks() {
@@ -178,23 +172,6 @@ function NodeadlineArr(text, cbComplected) {
   this.text = text;
   this.cbComplected = cbComplected;
 }
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-/*Обьявление обьектов */
 
 createTasksEl(); // Создание нового обьекта tasks (вызов функции)
 createNodeadlineEl(); // Создание нового обьекта nodeadline (вызов функции)

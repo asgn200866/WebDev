@@ -1,54 +1,127 @@
-const taskGroup = {
-  inputs: document.getElementsByClassName('tasks-input'),
-  checkboxes: document.getElementsByClassName('tasks-cb'),
-  container: document.getElementById('tasksText'),
-}; // Группа для задач и ключей к различным данным
-
-const nodeadlineGroup = {
-  inputs: document.getElementsByClassName('nodeadline-input'),
-  checkboxes: document.getElementsByClassName('nodeadline-cb'),
-  container: document.getElementById('nodeadlineText'),
-}; // Группа для свободных задач и ключей к различным данным
-
 class TopLabel {
-  constructor(text, cbCheck) {
+  constructor(text, cbCheck, id) {
     this.text = text;
     this.cbCheck = cbCheck;
+    this.id = id;
   }
 } // Общий класс с значениями текста и чекбокса
 
 class Tasks extends TopLabel {
-  constructor(text, cbCheck, reps) {
-    super(text, cbCheck);
-    this.reps = reps;
+  constructor(text, cbCheck, id) {
+    super(text, cbCheck, id);
   }
 } // Дочерний объект задач с количество повторений
 
 class Nodeadline extends TopLabel {
-  constructor(text, cbCheck, stringency) {
-    super(text, cbCheck);
-    this.stringency = stringency;
+  constructor(text, cbCheck, id) {
+    super(text, cbCheck, id);
   }
 } // Дочерний объект свободных задач с значением срочности
 
-function creatEl(baseClassName, columnElement) {
-  let fragmentMain = document.createElement('div');
+const constructorKey = {
+  task: {
+    inputs: document.getElementsByClassName('tasks-input'),
+    checkboxes: document.getElementsByClassName('tasks-cb'),
+    container: document.getElementById('tasksText'),
+    name: 'task',
+    type: Tasks,
+    baseClassName: 'label-text-tasks',
+    inputClassName: 'tasks-input',
+    checkboxClassName: 'tasks-cb',
+    arrayObjects: [],
+  },
+  nodeadline: {
+    type: Nodeadline,
+    baseClassName: 'label-text-nodeadline',
+    inputClassName: 'nodeadline-input',
+    checkboxClassName: 'nodeadline-cb',
+    inputs: document.getElementsByClassName('nodeadline-input'),
+    checkboxes: document.getElementsByClassName('nodeadline-cb'),
+    container: document.getElementById('nodeadlineText'),
+    name: 'nodeadline',
+    arrayObjects: [],
+  },
+}; // Группа для имен объектов
+
+const groupsForEvent = [constructorKey.task, constructorKey.nodeadline];
+
+groupsForEvent.forEach((group) => {
+  group.container.addEventListener('input', (event) => {
+    const currentElement = event.target;
+    if (!currentElement.matches('input[type="text"]')) return;
+    const inputObject = currentElement.value;
+
+    const cardElement = currentElement.closest('[data-id]');
+    if (!cardElement) return;
+    const inputId = cardElement.dataset.id;
+
+    const checkbox = cardElement.querySelector('input[type="checkbox"]');
+    const checboxObject = checkbox ? checkbox.checked : false;
+
+    updatetext(inputObject, checboxObject, group, inputId);
+    messageLog();
+  });
+}); // Обработчик событий
+
+function creatEl(baseClassName, columnElement, inputClassName, checkboxClassName) {
+  const fragmentMain = document.createElement('div');
   fragmentMain.className = baseClassName;
+  const idElement = crypto.randomUUID();
   fragmentMain.innerHTML = `
-    <input type="checkbox" class= ${baseClassName}>
-    <input type="text" class= ${baseClassName}>`;
+  <input type="checkbox" class= ${checkboxClassName}>
+    <input type="text" class= ${inputClassName}>`;
+  fragmentMain.dataset.id = idElement;
   columnElement.insertAdjacentElement('beforeend', fragmentMain);
 } // Функция создания новых DOM элементов в документе
 
-creatEl('label-text-tasks', taskGroup.container);
-creatEl('label-text-nodeadline', nodeadlineGroup.container);
-/*
-function getVulue(collInputs, collCheckboxes) {
-  const inputsArr = Array.from(collInputs);
-  const checkboxesArr = Array.from(collCheckboxes);
+creatEl(
+  constructorKey.task.baseClassName,
+  constructorKey.task.container,
+  constructorKey.task.inputClassName,
+  constructorKey.task.checkboxClassName
+); // Создание первого элемента задач
 
-  const inputObject = inputsArr[inputsArr.length - 1];
-  const checboxObject = checkboxesArr[checkboxesArr.length - 1];
-}
+creatEl(
+  constructorKey.nodeadline.baseClassName,
+  constructorKey.nodeadline.container,
+  constructorKey.nodeadline.inputClassName,
+  constructorKey.nodeadline.checkboxClassName
+); // Создания первого элемента задач без крайнего срока
 
-https://chat.deepseek.com/a/chat/s/beecf82c-fd4f-4156-97b0-3253e3edacda -- полиморфизм */
+function createObject(inputObject, checboxObject, group, inputId) {
+  const inputValue = inputObject;
+  const checkboxValue = checboxObject;
+  const config = constructorKey[group.name];
+  const nameObject = config.type;
+
+  const objectClass = new nameObject(inputValue, checkboxValue, inputId);
+  config.arrayObjects.push(objectClass);
+  const ValueId = objectClass.id;
+  return { objectClass, ValueId };
+} // Создание объекта и добавление его в массив
+
+function updatetext(inputObject, checboxObject, group, inputId) {
+  const config = constructorKey[group.name];
+  const idArray = config.arrayObjects;
+  const checkId = inputId;
+  const realId = idArray.find((item) => item.id === checkId);
+  console.log(realId);
+  if (realId) {
+    realId.text = inputObject;
+    realId.cbCheck = checboxObject;
+  } else {
+    creatEl(
+      config.baseClassName,
+      config.container,
+      config.checkboxClassName,
+      config.inputClassName
+    );
+    createObject(inputObject, checboxObject, group, inputId);
+  }
+} // Редактирование объекта
+
+function messageLog() {
+  console.clear();
+  console.log(constructorKey.task.arrayObjects);
+  console.log(constructorKey.nodeadline.arrayObjects);
+} // Логирование массивов
