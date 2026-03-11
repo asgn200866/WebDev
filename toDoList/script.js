@@ -47,21 +47,34 @@ const groupsForEvent = [constructorKey.task, constructorKey.nodeadline];
 
 groupsForEvent.forEach((group) => {
   group.container.addEventListener('input', (event) => {
-    const currentElement = event.target;
-    if (!currentElement.matches('input[type="text"]')) return;
-    const inputObject = currentElement.value;
-
-    const cardElement = currentElement.closest('[data-id]');
-    if (!cardElement) return;
-    const inputId = cardElement.dataset.id;
-
-    const checkbox = cardElement.querySelector('input[type="checkbox"]');
-    const checboxObject = checkbox ? checkbox.checked : false;
-
-    updatetext(inputObject, checboxObject, group, inputId);
+    const valuesTargetElement = getValue(event);
+    updateObject(group, valuesTargetElement);
+    messageLog();
+  });
+  group.container.addEventListener('change', (event) => {
+    const valuesTargetElement = getValue(event);
+    updateObject(group, valuesTargetElement);
     messageLog();
   });
 }); // Обработчик событий
+
+function getValue(event) {
+  const currentElement = event.target;
+  const cardElement = currentElement.closest('[data-id]');
+  const inputElement = currentElement.closest('input[type="text"]');
+  const inputId = cardElement.dataset.id;
+  const inputObject = inputElement.value;
+  const checkboxObject = currentElement.checked;
+
+  console.clear();
+  console.log(inputObject);
+  /*   console.log(inputElement);
+  console.log(checkboxElement);
+  console.log(currentElement);
+  console.log(cardElement); */
+
+  return { inputId, inputObject, checkboxObject };
+}
 
 function creatEl(baseClassName, columnElement, inputClassName, checkboxClassName) {
   const fragmentMain = document.createElement('div');
@@ -88,9 +101,10 @@ creatEl(
   constructorKey.nodeadline.checkboxClassName
 ); // Создания первого элемента задач без крайнего срока
 
-function createObject(inputObject, checboxObject, group, inputId) {
-  const inputValue = inputObject;
-  const checkboxValue = checboxObject;
+function createObject(group, valuesTargetElement) {
+  const inputId = valuesTargetElement.inputId;
+  const inputValue = valuesTargetElement.inputObject;
+  const checkboxValue = valuesTargetElement.checkboxObject;
   const config = constructorKey[group.name];
   const nameObject = config.type;
 
@@ -100,12 +114,14 @@ function createObject(inputObject, checboxObject, group, inputId) {
   return { objectClass, ValueId };
 } // Создание объекта и добавление его в массив
 
-function updatetext(inputObject, checboxObject, group, inputId) {
+function updateObject(group, valuesTargetElement) {
   const config = constructorKey[group.name];
   const idArray = config.arrayObjects;
-  const checkId = inputId;
+  const checkId = valuesTargetElement.inputId;
   const realId = idArray.find((item) => item.id === checkId);
-  console.log(realId);
+  const inputObject = valuesTargetElement.inputObject;
+  const checboxObject = valuesTargetElement.checkboxObject;
+
   if (realId) {
     realId.text = inputObject;
     realId.cbCheck = checboxObject;
@@ -116,12 +132,20 @@ function updatetext(inputObject, checboxObject, group, inputId) {
       config.checkboxClassName,
       config.inputClassName
     );
-    createObject(inputObject, checboxObject, group, inputId);
+    createObject(group, valuesTargetElement);
   }
 } // Редактирование объекта
 
 function messageLog() {
-  console.clear();
+  /*   console.clear();
   console.log(constructorKey.task.arrayObjects);
-  console.log(constructorKey.nodeadline.arrayObjects);
+  console.log(constructorKey.nodeadline.arrayObjects); */
 } // Логирование массивов
+
+/*   if (checboxObject == 'true') {
+    currentElementInput.style.textDecoration = 'line-through';
+    console.log('true');
+  } else if (checboxObject == 'false') {
+    currentElementInput.style.textDecoration = 'none';
+    console.log('false');
+  } */
