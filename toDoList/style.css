@@ -14,7 +14,7 @@ body {
 .pretop-label,
 .label-text,
 .days-calendar,
-.tasks-calendar {
+.calendar {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -22,28 +22,46 @@ body {
 }
 
 .column-tasks,
-.column-nodeadline {
+.column-nodeadline,
+.column-monday,
+.column-tuesday,
+.column-wednesday,
+.column-thursday,
+.column-friday,
+.column-saturday,
+.column-sunday {
   display: flex;
   flex-direction: column;
   flex: 1;
   align-items: center;
 }
 
-.calendar {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-around;
-}
-
 .label-text-tasks,
-.label-text-nodeadline {
+.label-text-monday,
+.label-text-tuesday,
+.label-text-wednesday,
+.label-text-thursday,
+.label-text-friday,
+.label-text-saturday,
+.label-text-sunday {
   display: flex;
   flex-direction: row;
 }
 
 .tasks-input,
-.nodeadline-input {
+.nodeadline-input,
+.monday-input,
+.tuesday-input,
+.wednesday-input,
+.thursday-input,
+.friday-input,
+.saturday-input,
+.sunday-input {
+  width: 12vw;
   text-decoration: none;
   color: var(--color--text--black);
+}
+
+.checkbox-day-week {
+  display: none;
 }

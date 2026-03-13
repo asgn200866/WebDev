@@ -1,54 +1,69 @@
-class TopLabel {
-  constructor(text, cbCheck, id) {
+class ObjectClass {
+  constructor(text, id) {
     this.text = text;
-    this.cbCheck = cbCheck;
     this.id = id;
   }
-} // Общий класс с значениями текста и чекбокса
+} // Общий класс задач с значениями текста и чекбокса
 
-class Tasks extends TopLabel {
-  constructor(text, cbCheck, id) {
-    super(text, cbCheck, id);
-  }
-} // Дочерний объект задач с количество повторений
+function createSubclass() {
+  return class extends ObjectClass {
+    constructor(text, cbCheck, id) {
+      super(text, id);
+      this.cbCheck = cbCheck;
+    }
+  };
+} // Функция создания задач ObjectClass
 
-class Nodeadline extends TopLabel {
-  constructor(text, cbCheck, id) {
-    super(text, cbCheck, id);
-  }
-} // Дочерний объект свободных задач с значением срочности
+const daysWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+// Ключи для дней календаря в constructorKey
 
 const constructorKey = {
   task: {
-    inputs: document.getElementsByClassName('tasks-input'),
-    checkboxes: document.getElementsByClassName('tasks-cb'),
-    container: document.getElementById('tasksText'),
     name: 'task',
-    type: Tasks,
+    type: 'Tasks',
     baseClassName: 'label-text-tasks',
     inputClassName: 'tasks-input',
     checkboxClassName: 'tasks-cb',
+    inputs: document.getElementsByClassName('tasks-input'),
+    checkboxes: document.getElementsByClassName('tasks-cb'),
+    container: document.getElementById('tasksText'),
     arrayObjects: [],
   },
   nodeadline: {
-    type: Nodeadline,
+    name: 'nodeadline',
+    type: 'Nodeadline',
     baseClassName: 'label-text-nodeadline',
     inputClassName: 'nodeadline-input',
     checkboxClassName: 'nodeadline-cb',
     inputs: document.getElementsByClassName('nodeadline-input'),
     checkboxes: document.getElementsByClassName('nodeadline-cb'),
     container: document.getElementById('nodeadlineText'),
-    name: 'nodeadline',
     arrayObjects: [],
   },
+  ...Object.fromEntries(
+    daysWeek.map((day) => [
+      day,
+      {
+        name: day,
+        type: day.charAt(0).toUpperCase() + day.slice(1),
+        baseClassName: `label-text-${day}`,
+        inputClassName: `${day}-input`,
+        checkboxClassName: 'checkbox-day-week',
+        inputs: document.getElementsByClassName(`${day}-input`),
+        checkboxes: document.getElementsByClassName('checkbox-day-week'),
+        container: document.getElementById(`${day}Text`),
+        arrayObjects: [],
+      },
+    ])
+  ),
 }; // Группа для имен объектов
 
-const groupsForEvent = [constructorKey.task, constructorKey.nodeadline];
+const groupsForEvent = Object.values(constructorKey); // Массив для перебора групп объектов
 
 groupsForEvent.forEach((group) => {
   group.container.addEventListener('input', (event) => {
     if (!event.target.matches('input[type="text"]')) return;
-    const valuesTargetElement = getValue(event);
+    const valuesTargetElement = getValue(event, group);
     updateObject(group, valuesTargetElement);
     deleteElement(group, valuesTargetElement, event);
     messageLog();
@@ -60,49 +75,41 @@ groupsForEvent.forEach((group) => {
   });
 }); // Обработчик событий
 
-function getValue(event) {
+function getValue(event, group) {
   const currentElement = event.target;
   const cardElement = currentElement.closest('[data-id]');
   const inputElement = currentElement.closest('input[type="text"]');
-  const checkboxElement = cardElement.querySelector('input[type="checkbox"]');
-  const checkboxObject = checkboxElement.checked;
   const inputId = cardElement.dataset.id;
   const inputObject = inputElement.value;
-
+  cardElement.querySelector('input[type="checkbox"]');
+  const checkboxElement = cardElement.querySelector('input[type="checkbox"]');
+  const checkboxObject = checkboxElement.checked;
   return { inputId, inputObject, checkboxObject, cardElement };
-}
+} // Функция получение данных из HTML в реальном времени
 
-function createEl(baseClassName, columnElement, inputClassName, checkboxClassName) {
+function createElement(group) {
+  const config = constructorKey[group.name];
   const fragmentMain = document.createElement('div');
-  fragmentMain.className = baseClassName;
+  fragmentMain.className = config.baseClassName;
   const idElement = crypto.randomUUID();
   fragmentMain.innerHTML = `
-  <input type="checkbox" class= ${checkboxClassName}>
-    <input type="text" class= ${inputClassName}>`;
+  <input type="checkbox" class= ${config.checkboxClassName}>
+    <input type="text" class= ${config.inputClassName}>`;
   fragmentMain.dataset.id = idElement;
-  columnElement.insertAdjacentElement('beforeend', fragmentMain);
-} // Функция создания новых DOM элементов в документе
 
-createEl(
-  constructorKey.task.baseClassName,
-  constructorKey.task.container,
-  constructorKey.task.inputClassName,
-  constructorKey.task.checkboxClassName
-); // Создание первого элемента задач
+  config.container.insertAdjacentElement('beforeend', fragmentMain);
+} // Функция создания элементов
 
-createEl(
-  constructorKey.nodeadline.baseClassName,
-  constructorKey.nodeadline.container,
-  constructorKey.nodeadline.inputClassName,
-  constructorKey.nodeadline.checkboxClassName
-); // Создания первого элемента задач без крайнего срока
+groupsForEvent.forEach((group) => {
+  createElement(group);
+}); // Создание первых элементов
 
 function createObject(group, valuesTargetElement) {
   const inputId = valuesTargetElement.inputId;
   const inputValue = valuesTargetElement.inputObject;
   const checkboxValue = valuesTargetElement.checkboxObject;
   const config = constructorKey[group.name];
-  const nameObject = config.type;
+  const nameObject = createSubclass();
 
   const objectClass = new nameObject(inputValue, checkboxValue, inputId);
   config.arrayObjects.push(objectClass);
@@ -117,13 +124,12 @@ function checkboxUpdateStyle(group, event) {
   const cardElement = currentElement.closest('[data-id]');
   const inputId = cardElement.dataset.id;
   const realId = idArray.find((item) => item.id === inputId);
-  const checkboxElement = cardElement.querySelector('input[type="checkbox"]');
-  const checkboxObject = checkboxElement.checked;
-
+  const checkboxObject = currentElement.checked;
+  const inputElement = cardElement.querySelector('input[type="text"]');
   if (checkboxObject) {
-    cardElement.style.textDecoration = 'line-through';
+    inputElement.style.textDecoration = 'line-through';
   } else {
-    cardElement.style.textDecoration = 'none';
+    inputElement.style.textDecoration = 'none';
   }
 
   if (realId) {
@@ -141,12 +147,7 @@ function updateObject(group, valuesTargetElement) {
   if (realId) {
     realId.text = inputObject;
   } else {
-    createEl(
-      config.baseClassName,
-      config.container,
-      config.checkboxClassName,
-      config.inputClassName
-    );
+    createElement(group);
     createObject(group, valuesTargetElement);
   }
 } // Редактирование объекта и создание объекта/DOM элемента
@@ -165,6 +166,8 @@ function deleteElement(group, valuesTargetElement) {
 
 function messageLog() {
   console.clear();
-  console.table(constructorKey.task.arrayObjects);
-  console.table(constructorKey.nodeadline.arrayObjects);
+  groupsForEvent.forEach((group) => {
+    const config = group.arrayObjects;
+    console.table(group.arrayObjects);
+  });
 } // Логирование массивов
