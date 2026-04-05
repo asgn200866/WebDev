@@ -1,17 +1,15 @@
-console.log("Hello Word");
-/*
-alert("Hello");
-let name = prompt("Как вас зовут?");
-let isAdult = confirm("Вам есть 18?");
-*/
-/*
-let sum1 = +prompt("Введите первое число");
-console.log(sum1);
-console.log(typeof sum1);
-let sum2 = +prompt("Введите второе число");
-console.log(sum2);
-console.log(typeof sum2);
-let summa = sum1 + sum2;
-console.log(summa);
-alert("Сумма двух чисел равна " + summa);
-*/
+const fetchElement = document.querySelector(".fetch-log");
+
+fetch("https://jsonplaceholder.typicode.com/posts")
+  .then((response) => response.json())
+  .then((data) => {
+    console.table(data);
+    data.forEach((element) => {
+      const framentMain = document.createElement("p");
+      framentMain.textContent = element.title;
+
+      fetchElement.after(`${element.title}`, framentMain);
+      console.log(element.title);
+    });
+  })
+  .catch((error) => console.error(error));
