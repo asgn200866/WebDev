@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { ConterButton } from "./components/ButtonCounter";
+import { ProductCard } from "./components/ProductCard";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
           <ConterButton />
+          <ProductCard name="Banan" price={20} />
         </p>
         <a
           className="App-link"
